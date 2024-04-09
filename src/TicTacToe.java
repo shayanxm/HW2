@@ -55,42 +55,67 @@ public class TicTacToe {
         //iterate in rows and fix 4 in row
         int amirsRowsInStack = 1;
         int alisRowsInStack = 1;
+        int amirsColumnsInStack = 1;
+        int alisColumnsInStack = 1;
         findRowWinner:
-        for (int i = 0; i < numberOfRows; i++) {
+        for (int i = 0; i < numberOfRows - 1; i++) {
             for (int j = 0; j < numberOfColumns - 1; j++) {
+                //this for rows
                 if (ticTacToeMatric[i][j] == ticTacToeMatric[i][j + 1]) {
                     if (ticTacToeMatric[i][j] == 'x') {
-                        System.out.println("hey its " + amirsRowsInStack + " before adding new");
 
                         amirsRowsInStack++;
-                        System.out.println("hey its " + amirsRowsInStack + " the same in row for amir");
+                        System.out.println("hey its " + amirsColumnsInStack + " the same in row for amir");
                     }
                     if (ticTacToeMatric[i][j] == '0') {
                         alisRowsInStack++;
-                        System.out.println("hey its " + alisRowsInStack + " the same in row for ali");
+                        System.out.println("hey its " + alisColumnsInStack + " the same in row for ali");
 
-                    } else {
-                  //      System.out.println("reseting");
-//                        alisRowsInStack = 1;
-//                        amirsRowsInStack = 1;
+                    }
+                }
+
+
+            }
+        }
+        /// coulumns
+        //reset counters when needed
+        coulumncounter:for (int j = 0; j < numberOfColumns - 1; j++) {
+            amirsColumnsInStack = 1; // Reset for each column
+            alisColumnsInStack = 1;
+            for (int i = 0; i < numberOfRows - 1; i++) {
+                if (ticTacToeMatric[i][j] == ticTacToeMatric[i + 1][j]) {
+                    if (ticTacToeMatric[i][j] == 'x' && ticTacToeMatric[i + 1][j] == 'x') {
+
+                        amirsColumnsInStack++;
+                        if (amirsColumnsInStack==4) break coulumncounter;
+                        System.out.println("hey its  AMODI " + amirsColumnsInStack + " the same in row for amir");
+                    }
+                    if (ticTacToeMatric[i][j] == '0' && ticTacToeMatric[i + 1][j] == '0') {
+                        alisColumnsInStack++;
+                        if (alisColumnsInStack==4)break coulumncounter;
+                        System.out.println("hey its AMODI " + alisColumnsInStack + " the same in row for ali");
+
                     }
                 }
             }
-            //else
-            //    rowsInStack = 1;
-            if (amirsRowsInStack == 4) {
-                //  if (ticTacToeMatric[i][j] == 'X') {
-                System.out.println("winner winner chicken dinner , Ali won the game");
-                gameShouldEnd = true;
-                break findRowWinner;
-            } else if (alisRowsInStack == 4) {
-                gameShouldEnd = true;
-                System.out.println("winner winner chicken dinner , Amir won the game");
-
-                break findRowWinner;
+        }
 
 
-            }
+        //check for winner
+        if (amirsRowsInStack == 4 || amirsColumnsInStack == 4) {
+            //  if (ticTacToeMatric[i][j] == 'X') {
+            System.out.println("amirscoulmns " + amirsColumnsInStack + " amir rows " + amirsRowsInStack);
+            System.out.println("winner winner chicken dinner , Ali won the game");
+            gameShouldEnd = true;
+            //   break findRowWinner;
+        } else if (alisRowsInStack == 4 || alisColumnsInStack == 4) {
+            gameShouldEnd = true;
+            System.out.println("aliscoulmns " + alisColumnsInStack + "  alis rows " + alisRowsInStack);
+
+            System.out.println("winner winner chicken dinner , Amir won the game");
+
+            //  break findRowWinner;
+
 
         }
 
@@ -98,7 +123,9 @@ public class TicTacToe {
 //            alisRowsInStack = 1;
 
         //agar hameye khone ha barabar X ya 0 bashashan mosaiv ast
-        for (int i = 0; i < numberOfRows; i++) {
+        for (
+                int i = 0;
+                i < numberOfRows; i++) {
             for (int j = 0; j < numberOfColumns; j++) {
                 if (ticTacToeMatric[i][j] == '-') {
                     notEqual = true;
@@ -131,6 +158,7 @@ public class TicTacToe {
         }
     }
 }
+
 
 
 
